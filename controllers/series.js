@@ -1,7 +1,7 @@
 const { BadRequestError } = require("prattask-cmmn");
 const { seriesCrud } = require("../models/Series");
 const axios = require("axios").default;
-const DAILYPASSURL = 'https://vercel.com/k-kumar-01/dailypass-service/7THQEkCJm4CLtFDBfU6GJ5Xjcxj3/';
+const DAILYPASSURL = 'https://dailypass-service.vercel.app/';
 
 exports.fetchAllContent = async (req, res, next) => {
   try {
