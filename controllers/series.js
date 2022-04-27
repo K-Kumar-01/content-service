@@ -1,6 +1,7 @@
 const { BadRequestError } = require("prattask-cmmn");
 const { seriesCrud } = require("../models/Series");
 const axios = require("axios").default;
+const DAILYPASSURL = 'https://vercel.com/k-kumar-01/dailypass-service/7THQEkCJm4CLtFDBfU6GJ5Xjcxj3/';
 
 exports.fetchAllContent = async (req, res, next) => {
   try {
@@ -43,7 +44,7 @@ exports.createContentMany = async (req, res, next) => {
       };
       return content;
     });
-    await axios.put("http://localhost:4000/dailyPass/series", {
+    await axios.put(`${DAILYPASSURL}dailyPass/series`, {
       series: modifiedContent,
     });
     return res.status(200).json({ data: createdContent });
@@ -56,7 +57,7 @@ exports.fetchContentForUser = async (req, res, next) => {
   try {
     const userID = req.query.userId;
     const seriesID = req.params.id;
-    const userContentDetails = await axios.get(`http://localhost:4000/dailypass/details?seriesId=${seriesID}&userId=${userID}`);
+    const userContentDetails = await axios.get(`${DAILYPASSURL}dailypass/details?seriesId=${seriesID}&userId=${userID}`);
     return res.status(200).json({data:userContentDetails.data.data});
   } catch (error) {
     console.log(error)
